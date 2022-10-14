@@ -1,0 +1,14 @@
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  button {
+    font-family : inherit;
+  }
+
+  h2 {
+    margin: 10px 0;
+  }
+}
+
