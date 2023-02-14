@@ -9,6 +9,13 @@ export const addCartItem = (cartItems, productToAdd) => {
 
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
+export const removeItem = (cartItems, itemToRemove) => {
+  const cartItemIndex = cartItems.indexOf((cartItem) => cartItem.id === itemToRemove.id);
+  if (cartItemIndex) {
+    return cartItems.splice(cartItemIndex, 1);
+  }
+  return [...cartItems];
+};
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -30,7 +37,7 @@ export const CartProvider = ({ children }) => {
 
   const addItemToCart = (product) => setCartItems(addCartItem(cartItems, product));
 
-  const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount };
+  const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount, removeItem };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
